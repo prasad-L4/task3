@@ -59,6 +59,8 @@ display: flex;
     align-items: center;
     border-radius: 6px;
     padding: 5px;
+    text-align: center;
+    font-size: 20px;
  
 }
 .input-section i,.todo-input i{
@@ -80,6 +82,7 @@ display: flex;
     align-items: center;
     margin-top: 1rem;
     flex-wrap: wrap;
+    padding-left: 4px;
    
     
     
@@ -89,12 +92,14 @@ display: flex;
 }
 .todo-input article{
     margin-top: 10px;
-    width: 50vw;
-    height: 30px;
+    width: 45vw;
+    height: 35px;
     background-color: white;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     border-radius: 6px;
-    padding: 5px;
+   
+    text-align: center!important;
+
 }

@@ -1,20 +1,33 @@
 import React, { useState } from "react";
 import "./Todo.css";
 import { FaPlus } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
+import { MdDelete,MdEditNote  } from "react-icons/md";
 const Todo = () => {
   const [input, setinput] = useState("");
   const [addButtton, setAddButtton] = useState([]);
+  const [editIndex, setEditIndex] = useState(null);
 
   const handleinput = (e) => {
     setinput(e.target.value);
   };
   const handleInputButton = () => {
-    setAddButtton([...addButtton, input]);
-    setinput('')
+    if(editIndex!=null){
+      const updatedNote=[...addButtton]
+      updatedNote[editIndex]=input
+      setAddButtton(updatedNote)
+      setEditIndex(null)
+    }else{
+      setAddButtton([...addButtton, input]);
+      setinput('')
+    }
+
   };
   const handleDelete=(index)=>{
 setAddButtton(addButtton.filter((data,dataindex)=>dataindex!=index))
+  }
+  const handleEdit=(index)=>{
+    setinput(addButtton[index])
+    setEditIndex(index)
   }
   return (
     <>
@@ -27,7 +40,7 @@ setAddButtton(addButtton.filter((data,dataindex)=>dataindex!=index))
           </div>
           {/*input section  */}
           <div className="input-section">
-            <input value={input} type="text" onChange={handleinput} />
+            <input value={input} type="text" placeholder="REMAINDER" onChange={handleinput} />
             <i onClick={handleInputButton}>
               <FaPlus />
             </i>
@@ -43,6 +56,7 @@ setAddButtton(addButtton.filter((data,dataindex)=>dataindex!=index))
                   <i onClick={()=>handleDelete(index)}>
                     <MdDelete />
                   </i>
+                  <i onClick={()=>handleEdit(index)}><MdEditNote /></i>
                 </div>
                 )))
               }
